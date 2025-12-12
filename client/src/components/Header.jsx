@@ -19,8 +19,9 @@ export default function Header({ onBack, light = false }) {
     const navigate = useNavigate();
     const location = useLocation();
     const isAllListings = location && location.pathname === '/all-listings';
-    const rightLinkClass = isAllListings ? 'text-white font-semibold text-base md:text-lg hover:opacity-80 transition-opacity' : 'text-black font-semibold text-base md:text-lg hover:opacity-70 transition-opacity';
-    const rightIconClass = isAllListings ? 'w-5 h-5 text-white' : 'w-5 h-5 text-black';
+    const useWhite = isAllListings;
+    const rightLinkClass = useWhite ? 'text-white font-semibold text-base md:text-lg hover:opacity-80 transition-opacity' : 'text-black font-semibold text-base md:text-lg hover:opacity-70 transition-opacity';
+    const rightIconClass = useWhite ? 'w-5 h-5 text-white' : 'w-5 h-5 text-black';
     const timeoutRef = useRef(null);
     const [contactOpen, setContactOpen] = useState(false);
 
@@ -178,7 +179,7 @@ export default function Header({ onBack, light = false }) {
                             <span className='font-semibold'>Menu</span>
                         </button>
                         <div className="flex items-center space-x-8" style={{ marginLeft: '400px' }}>
-                            <button onClick={() => handleNav({ href: '/All-listings' })} className={`tracking-wide ${rightLinkClass}`}>Portfolio</button>
+                            <button onClick={() => handleNav({ href: '/all-listings' })} className={`tracking-wide ${rightLinkClass}`}>Portfolio</button>
                             <button onClick={() => setContactOpen(true)} className={`tracking-wide ${rightLinkClass}`}>Contact</button>
                         </div>
                     </div>
