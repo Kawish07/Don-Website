@@ -7,7 +7,7 @@ export default function Footer() {
             <div className="max-w-7xl mx-auto">
                 <div className="mb-16">
                     <h3 className="text-3xl tracking-widest mb-12 font-light">Philip Parnanzone</h3>
-                    <div className="grid md:grid-cols-2 gap-16">
+                    <div className="grid md:grid-cols-2 mb-3 gap-16">
                         <div className="space-y-8">
                             <div>
                                 <p className="text-sm tracking-widest mb-4 font-light">LICENSED IN</p>
@@ -38,12 +38,14 @@ export default function Footer() {
                                         </svg>
                                         <div>
                                             <p className="text-xs tracking-widest mb-1 font-light">ADDRESS</p>
-                                            <p className="text-sm font-light">371 richmond road, </p>
-                                            <p className="text-sm font-light">Ottawa, ON K2A 0B7</p>
+                                            <p className="text-sm font-light">371 richmond road, Ottawa, ON K2A 0B7 </p>
+                                            
                                         </div>
+                                        
                                     </div>
                                 </div>
                             </div>
+                            
                             <div>
                                 <div className="flex items-start space-x-3">
                                     <svg className="w-5 h-5 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

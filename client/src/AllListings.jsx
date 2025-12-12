@@ -58,7 +58,7 @@ export default function AllListings({ onBack }) {
                 <div 
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ 
-                        backgroundImage: "url('https://images.pexels.com/photos/323780/pexels-photo-323780.jpeg')"
+                        backgroundImage: "url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg')"
                     }}
                 >
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>

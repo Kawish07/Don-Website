@@ -11,15 +11,16 @@ export default function Header({ onBack, light = false }) {
     const ticking = useRef(false);
     const [atTop, setAtTop] = useState(true);
 
-    // conditional classes for left/right sides: left is on black background, right is on white
+    // conditional classes for left/right sides: left is on black background
     // make header link text slightly larger and bolder
     const leftLinkClass = 'text-white font-semibold text-base md:text-lg hover:opacity-80 transition-opacity';
-    const rightLinkClass = 'text-black font-semibold text-base md:text-lg hover:opacity-70 transition-opacity';
     const leftIconClass = 'w-5 h-5 text-white';
-    const rightIconClass = 'w-5 h-5 text-black';
 
     const navigate = useNavigate();
     const location = useLocation();
+    const isAllListings = location && location.pathname === '/all-listings';
+    const rightLinkClass = isAllListings ? 'text-white font-semibold text-base md:text-lg hover:opacity-80 transition-opacity' : 'text-black font-semibold text-base md:text-lg hover:opacity-70 transition-opacity';
+    const rightIconClass = isAllListings ? 'w-5 h-5 text-white' : 'w-5 h-5 text-black';
     const timeoutRef = useRef(null);
     const [contactOpen, setContactOpen] = useState(false);
 
@@ -149,13 +150,13 @@ export default function Header({ onBack, light = false }) {
                     <div className="w-1/2 bg-black" />
                     <div className="w-1/2 bg-white" />
                 </div>
-                <div className="relative flex items-center justify-between px-4 sm:px-6 md:px-8 py-4 md:py-6">
+                <div className="relative flex items-center justify-between px-8 py-6">
                     <div className="flex items-center">
                         <Link to="/">
                             <img
                                 src="https://cdn-cws.datafloat.com/AGY/images/company/AGY/agency-logo.svg?mw=160&mh=160"
                                 alt="Compass logo"
-                                className="h-16 sm:h-20 md:h-24 lg:h-28 max-w-[140px] sm:max-w-[180px] md:max-w-[220px] lg:max-w-[260px] w-auto object-contain"
+                                className="h-24 md:h-28 max-w-[220px] md:max-w-[260px] w-auto object-contain"
                             />
                         </Link>
                     </div>
@@ -163,43 +164,29 @@ export default function Header({ onBack, light = false }) {
                         {onBack ? (
                             <button
                                 onClick={onBack}
-                                className={`tracking-wide ${rightLinkClass} mr-4 md:mr-8 text-sm md:text-base`}
+                                className={`tracking-wide ${rightLinkClass} mr-8`}
                             >
                                 Back to Home
                             </button>
                         ) : null}
-
-                        {/* Portfolio and Contact Links - Hidden on mobile */}
-                        <div className="hidden lg:flex items-center space-x-8 mr-8">
-                            <button 
-                                onClick={() => handleNav({ href: '/All-listings' })} 
-                                className={`tracking-wide ${rightLinkClass}`}
-                            >
-                                Portfolio
-                            </button>
-                            <button 
-                                onClick={() => setContactOpen(true)} 
-                                className={`tracking-wide ${rightLinkClass}`}
-                            >
-                                Contact
-                            </button>
-                        </div>
 
                         <button
                             onClick={() => setMenuOpen(!menuOpen)}
                             className={`flex items-center space-x-2 tracking-wide ${rightLinkClass}`}
                         >
                             <Menu className={rightIconClass} />
-                            <span className='font-semibold hidden sm:inline'>Menu</span>
+                            <span className='font-semibold'>Menu</span>
                         </button>
+                        <div className="flex items-center space-x-8" style={{ marginLeft: '400px' }}>
+                            <button onClick={() => handleNav({ href: '/All-listings' })} className={`tracking-wide ${rightLinkClass}`}>Portfolio</button>
+                            <button onClick={() => setContactOpen(true)} className={`tracking-wide ${rightLinkClass}`}>Contact</button>
+                        </div>
                     </div>
                 </div>
             </header>
 
-            {/* Slide Menu - Responsive width */}
-            <div className={`fixed top-0 right-0 h-full z-50 transform transition-all duration-500 ease-out ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`} 
-                 style={{ width: 'clamp(300px, 90vw, 384px)' }} 
-                 aria-hidden={!menuOpen}>
+            {/* Slide Menu */}
+            <div className={`fixed top-0 right-0 h-full w-96 z-50 transform transition-all duration-500 ease-out ${menuOpen ? 'translate-x-0' : 'translate-x-full'}`} aria-hidden={!menuOpen}>
                 {/* Gradient Background with Pattern */}
                 <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black pointer-events-auto">
                     {/* Animated Grid Pattern */}
@@ -211,27 +198,27 @@ export default function Header({ onBack, light = false }) {
                         }} />
                     </div>
 
-                    {/* Glowing Orb Effects - Responsive positioning */}
-                    <div className="absolute top-20 right-10 w-48 sm:w-64 h-48 sm:h-64 bg-white/5 rounded-full blur-3xl" />
-                    <div className="absolute bottom-20 left-10 w-32 sm:w-48 h-32 sm:h-48 bg-white/3 rounded-full blur-3xl" />
+                    {/* Glowing Orb Effects */}
+                    <div className="absolute top-20 right-10 w-64 h-64 bg-white/5 rounded-full blur-3xl" />
+                    <div className="absolute bottom-20 left-10 w-48 h-48 bg-white/3 rounded-full blur-3xl" />
                 </div>
 
-                <div className="relative h-full p-6 sm:p-8 flex flex-col">
-                    {/* Close Button - Responsive positioning */}
+                <div className="relative h-full p-8 flex flex-col">
+                    {/* Close Button */}
                     <button
                         onClick={() => setMenuOpen(false)}
                         aria-label="Close menu"
-                        className="absolute top-4 sm:top-6 right-4 sm:right-6 w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-300 group"
+                        className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 transition-all duration-300 group"
                     >
-                        <X className="w-4 h-4 sm:w-5 sm:h-5 text-white/70 group-hover:text-white transition-colors group-hover:rotate-90 duration-300" />
+                        <X className="w-5 h-5 text-white/70 group-hover:text-white transition-colors group-hover:rotate-90 duration-300" />
                     </button>
 
                     {/* Decorative Line */}
-                    <div className="mt-6 sm:mt-8 mb-8 sm:mb-12">
-                        <div className="h-px w-12 sm:w-16 bg-gradient-to-r from-white/40 to-transparent" />
+                    <div className="mt-8 mb-12">
+                        <div className="h-px w-16 bg-gradient-to-r from-white/40 to-transparent" />
                     </div>
 
-                    <nav className="flex-1 overflow-y-auto pr-2">
+                    <nav className="flex-1">
                         {[
                             { href: '#hero', label: 'Home', icon: '01' },
                             { href: '#contact', label: 'Contact', icon: '02' },
@@ -245,17 +232,17 @@ export default function Header({ onBack, light = false }) {
                                 className={`group block w-full text-left transform transition-all duration-500 ${menuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}
                                 style={{ transitionDelay: `${idx * 80 + 100}ms` }}
                             >
-                                <div className="relative overflow-hidden mb-4 sm:mb-6">
+                                <div className="relative overflow-hidden mb-6">
                                     {/* Hover Background */}
                                     <div className="absolute inset-0 bg-gradient-to-r from-white/5 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                                    <div className="relative px-4 py-3 sm:py-4 flex items-center justify-between">
+                                    <div className="relative px-4 py-4 flex items-center justify-between">
                                         {/* Number Badge and Label */}
-                                        <div className="flex items-center space-x-3 sm:space-x-4">
+                                        <div className="flex items-center space-x-4">
                                             <span className="text-xs font-mono text-white/30 group-hover:text-white/50 transition-colors duration-300">
                                                 {item.icon}
                                             </span>
-                                            <span className="text-base sm:text-lg font-light tracking-wide text-white/90 group-hover:text-white transition-all duration-300 group-hover:translate-x-1">
+                                            <span className="text-lg font-light tracking-wide text-white/90 group-hover:text-white transition-all duration-300 group-hover:translate-x-1">
                                                 {item.label}
                                             </span>
                                         </div>
@@ -272,17 +259,17 @@ export default function Header({ onBack, light = false }) {
                     </nav>
 
                     {/* Social Section */}
-                    <div className="mt-auto pt-6 sm:pt-8 border-t border-white/10">
+                    <div className="mt-auto pt-8 border-t border-white/10">
                         <div className={`transform transition-all duration-500 ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '500ms' }}>
-                            <p className="text-xs font-mono text-white/40 mb-3 sm:mb-4 tracking-wider uppercase">Connect</p>
+                            <p className="text-xs font-mono text-white/40 mb-4 tracking-wider uppercase">Connect</p>
                             <div className="flex items-center space-x-3">
-                                <a href="https://www.instagram.com/theagency.ottawa/?hl=en" target="_blank" rel="noopener noreferrer" className="group relative w-10 h-10 sm:w-12 sm:h-12 border border-white/20 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 hover:border-white/40 hover:scale-110">
+                                <a href="https://www.instagram.com/theagency.ottawa/?hl=en" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 border border-white/20 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 hover:border-white/40 hover:scale-110">
                                     <div className="absolute inset-0 bg-white transform scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
-                                    <Instagram className="w-4 h-4 sm:w-5 sm:h-5 text-white relative z-10 group-hover:text-black transition-colors duration-300" />
+                                    <Instagram className="w-5 h-5 text-white relative z-10 group-hover:text-black transition-colors duration-300" />
                                 </a>
-                                <a href="https://www.facebook.com/parnanzonerealty/" target="_blank" rel="noopener noreferrer" className="group relative w-10 h-10 sm:w-12 sm:h-12 border border-white/20 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 hover:border-white/40 hover:scale-110">
+                                <a href="https://www.facebook.com/parnanzonerealty/" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 border border-white/20 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 hover:border-white/40 hover:scale-110">
                                     <div className="absolute inset-0 bg-white transform scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
-                                    <Facebook className="w-4 h-4 sm:w-5 sm:h-5 text-white relative z-10 group-hover:text-black transition-colors duration-300" />
+                                    <Facebook className="w-5 h-5 text-white relative z-10 group-hover:text-black transition-colors duration-300" />
                                 </a>
                             </div>
                         </div>

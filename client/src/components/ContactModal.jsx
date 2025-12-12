@@ -145,9 +145,9 @@ export default function ContactModal({ open = false, onClose = () => { } }) {
                                     </div>
 
                                     <div className="mt-8 flex gap-4">
-                                        <button className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition">
+                                        <a href='https://www.instagram.com/theagency.ottawa/?hl=en' className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition">
                                             <Instagram className="w-4 h-4 text-white" />
-                                        </button>
+                                        </a>
                                     </div>
                                 </div>
                             </div>

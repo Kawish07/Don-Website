@@ -8,7 +8,6 @@ import { getLenis } from './lib/lenis';
 import PageLoader from './components/PageLoader';
 import TransitionSplash from './components/TransitionSplash';
 import FloatingCTA from './components/FloatingCTA';
-import CustomCursor from './components/CustomCursor';
 
 export default function App() {
     const [showPopup, setShowPopup] = useState(false);
@@ -269,7 +268,6 @@ export default function App() {
 
     return (
         <div className="min-h-screen bg-white">
-            <CustomCursor />
             <PageLoader open={globalLoading} />
             <TransitionSplash />
             <Header />
@@ -342,7 +340,7 @@ export default function App() {
                     <div className="w-16 h-px bg-gray-800 mx-auto mb-6"></div>
                     <h2 className="text-5xl md:text-6xl font-light mb-10 tracking-[0.4em] text-black">Philip Parnanzone</h2>
                     <p className="text-base leading-relaxed mb-16 max-w-5xl mx-auto text-gray-800">
-                        Driven by a commitment to excellence, Philip Parnanzone serves a steadily growing network of buyers, sellers, investors, and relocating families across Ottawa and the surrounding markets. Philip is known for delivering clear, data-backed real estate insight paired with an unwavering dedication to client success. His approach blends strategic marketing, sharp market intelligence, and a concierge level service experience , making it easy to see why clients consistently choose Philip to lead their most important real estate decisions.
+                        Driven by a commitment to excellence, Philip Parnanzone serves a steadily growing network of buyers, sellers, investors, and relocating families across Ottawa and the surrounding markets. Philip is known for delivering clear, data-backed real estate insight paired with an unwavering dedication to client success. His approach blends strategic marketing, sharp market intelligence, and a concierge level service experience, making it easy to see why clients consistently choose Philip to lead their most important real estate decisions.
                     </p>
                     <div className="grid md:grid-cols-3 gap-12 mt-16">
                         <div>

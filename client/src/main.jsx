@@ -15,7 +15,6 @@ import PrivateRoute from './admin/PrivateRoute'
 import './index.css'
 import { initLenis, getLenis } from './lib/lenis'
 import PageLoader from './components/PageLoader'
-import CustomCursor from './components/CustomCursor'
 
 function PageWrapper({ children }) {
   const location = useLocation();
@@ -129,7 +128,6 @@ function GlobalLoaderProvider({ children }) {
   return (
     <>
       <PageLoader open={globalLoading} />
-      <CustomCursor />
       {children}
     </>
   );
