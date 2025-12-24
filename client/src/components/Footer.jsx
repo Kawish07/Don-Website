@@ -11,8 +11,12 @@ export default function Footer() {
           </h3>
           <div className="mb-8 relative">
             <h2 className="text-sm md:text-lg font-light text-white tracking-[0.3em] uppercase">
-              Broker, The Agency Ottawa
+              Broker
             </h2>
+            <h2 className="text-sm md:text-lg font-light text-white tracking-[0.3em] uppercase">
+              The Agency Ottawa
+            </h2>
+
             <div className="w-24 h-1 bg-yellow-400 mt-2"></div>
           </div>
           <div className="grid md:grid-cols-2 mb-3 gap-16">

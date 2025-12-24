@@ -572,11 +572,10 @@ export default function App() {
               </a>
             </div>
           </div>
-          <div className="relative rounded-lg overflow-hidden shadow-xl">
+          <div className="relative" style={{ paddingBottom: "110%" }}>
             <video
               ref={videoRef}
-              className="w-full h-96 object-cover object-center"
-              style={{ objectPosition: "center 35%" }}
+              className="absolute top-0 left-0 w-full h-full object-cover"
               poster="/images/philipnewimage1.jpg"
               onClick={handleVideoPlay}
             >
