@@ -13,6 +13,7 @@ import AdminSignup from './admin/AdminSignup'
 import { AuthProvider } from './admin/AuthProvider'
 import PrivateRoute from './admin/PrivateRoute'
 import './index.css'
+import { initLenis, getLenis } from './lib/lenis'
 import PageLoader from './components/PageLoader'
 
 function PageWrapper({ children }) {
@@ -27,11 +28,32 @@ function PageWrapper({ children }) {
 function RootLayout() {
   return (
     <GlobalLoaderProvider>
-      <AuthProvider>
-        <Outlet />
-      </AuthProvider>
+      <LenisProvider>
+        <AuthProvider>
+          <Outlet />
+        </AuthProvider>
+      </LenisProvider>
     </GlobalLoaderProvider>
   );
+}
+
+function LenisProvider({ children }) {
+  const location = useLocation()
+
+  useEffect(() => {
+    initLenis()
+  }, [])
+
+  useEffect(() => {
+    const lenis = getLenis()
+    if (lenis && typeof lenis.scrollTo === 'function') {
+      lenis.scrollTo(0, { immediate: false })
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [location])
+
+  return children
 }
 
 // Global loader component that watches all route changes

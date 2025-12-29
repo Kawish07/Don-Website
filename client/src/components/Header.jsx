@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Menu, X, Instagram, Facebook } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { getLenis } from '../lib/lenis';
 import ContactModal from './ContactModal';
 
 export default function Header({ onBack, light = false }) {
@@ -86,7 +87,12 @@ export default function Header({ onBack, light = false }) {
                 const el = document.querySelector(hash);
                 if (el) {
                     const top = el.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({ top, behavior: 'smooth' });
+                    const lenis = getLenis();
+                    if (lenis && typeof lenis.scrollTo === 'function') {
+                        lenis.scrollTo(top, { immediate: false });
+                    } else {
+                        window.scrollTo({ top, behavior: 'smooth' });
+                    }
                     // clear any temporary hash in history
                     window.history.replaceState({}, '', hash);
                 } else {
@@ -150,7 +156,7 @@ export default function Header({ onBack, light = false }) {
                         <Link to="/">
                             <img
                                 src="https://cdn-cws.datafloat.com/AGY/images/company/AGY/agency-logo.svg?mw=160&mh=160"
-                                alt="Compass logo"
+                                alt="Agency logo"
                                 className="h-24 md:h-28 max-w-[220px] md:max-w-[260px] w-auto object-contain"
                             />
                         </Link>

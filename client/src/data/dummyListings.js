@@ -23,7 +23,7 @@ export function getDummyListings() {
       beds: 2 + (i % 4),
       baths: 1 + (i % 3),
       sqft: 900 + i * 120,
-      price: `$${(750000 + i * 25000).toLocaleString()}`,
+      price: `${(750000 + i * 25000).toLocaleString()}`,
       status: statuses[i % statuses.length],
       images: [image],
       image,

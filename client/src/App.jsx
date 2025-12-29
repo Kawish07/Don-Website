@@ -4,6 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import { X, Instagram, Facebook } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import { getLenis } from "./lib/lenis";
 import PageLoader from "./components/PageLoader";
 import TransitionSplash from "./components/TransitionSplash";
 import FloatingCTA from "./components/FloatingCTA";
@@ -77,7 +78,12 @@ export default function App() {
           const el = document.querySelector(target);
           if (el) {
             const top = el.getBoundingClientRect().top + window.scrollY;
-            window.scrollTo({ top, behavior: "smooth" });
+            const lenis = getLenis();
+            if (lenis && typeof lenis.scrollTo === "function") {
+              lenis.scrollTo(top, { immediate: false });
+            } else {
+              window.scrollTo({ top, behavior: "smooth" });
+            }
           }
           window.history.replaceState({}, "", target);
         };
@@ -918,17 +924,17 @@ export default function App() {
 
               {/* Right Side - Scrollable Content */}
               <div
-                className={`p-8 md:p-10 flex flex-col transition-all duration-700 md:col-span-3 overflow-y-auto bg-white`}
+                className={`p-8 md:p-10 flex flex-col transition-all duration-700 md:col-span-3 overflow-hidden bg-white`}
                 style={{ maxHeight: "600px" }}
               >
                 {!popupSubmitted ? (
                   <div className="animate-slideInRight">
-                    <h2 className="text-3xl md:text-4xl font-light mb-3 text-black tracking-wide">
+                    <h2 className="text-1xl md:text-2xl font-light mb-0 text-black tracking-wide">
                       NOT READY TO START YOUR SEARCH YET?
                     </h2>
                     <p className="text-gray-700 mb-8 text-base leading-relaxed">
                       No worries! We can keep you up to date on the market and
-                      add you to a curated Compass Collection.
+                      add you to a curated Collection.
                     </p>
 
                     <form
@@ -1000,10 +1006,7 @@ export default function App() {
                           some of which may use artificial or prerecorded
                           voices. This consent isn't necessary for purchasing
                           any products or services and you may opt out at any
-                          time. To opt out from texts, you can reply, 'stop' at
-                          any time. To opt out from emails, you can click on the
-                          unsubscribe link in the emails. Message and data rates
-                          may apply.
+                          time.
                         </label>
                       </div>
 

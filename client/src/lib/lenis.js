@@ -1,4 +1,4 @@
-import Lenis from '@studio-freight/lenis'
+import Lenis from 'lenis'
 
 let lenisInstance = null
 let _rafRunning = false
@@ -12,31 +12,48 @@ export function initLenis() {
     lenisInstance = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      // Lenis removed: provide native-only fallbacks so existing imports keep working.
+      smooth: true,
+      orientation: 'vertical',
+      gestureOrientation: 'vertical'
+    })
 
-      export function initLenis() {
-        // no-op: Lenis removed. Keep for compatibility.
-        return null
-      }
+    const loop = (time) => {
+      try { lenisInstance.raf(time) } catch (e) { /* noop */ }
+      requestAnimationFrame(loop)
+    }
 
-      export function getLenis() {
-        return null
-      }
+    requestAnimationFrame(loop)
+  }
+  return lenisInstance
+}
 
-      export function subscribeToScroll(handler) {
-        // native scroll subscription; returns unsubscribe
-        const wrapped = () => handler(window.scrollY)
-        window.addEventListener('scroll', wrapped, { passive: true })
-        return () => window.removeEventListener('scroll', wrapped)
-      }
+export function getLenis() {
+  return lenisInstance
+}
 
-      export function scrollToTop(options = {}) {
-        window.scrollTo(0, 0)
-      }
+export function subscribeToScroll(handler) {
+  const lenis = getLenis()
+  if (lenis && typeof lenis.on === 'function') {
+    const cb = (e) => {
+      try { handler(typeof e === 'object' && e !== null && 'scroll' in e ? e.scroll : window.scrollY) } catch (err) { }
+    }
+    lenis.on('scroll', cb)
+    return () => { try { lenis.off('scroll', cb) } catch (e) { } }
+  }
 
-      export function suspendFallback() { /* no-op */ }
-      export function resumeFallback() { /* no-op */ }
-      export function isLowEndDevice() { return false }
+  const wrapped = () => handler(window.scrollY)
+  window.addEventListener('scroll', wrapped, { passive: true })
+  return () => window.removeEventListener('scroll', wrapped)
+}
 
-      export default { initLenis, getLenis, scrollToTop }
-        lastWheelAt = now
+export function scrollToTop(options = {}) {
+  const lenis = getLenis()
+  if (lenis && typeof lenis.scrollTo === 'function') {
+    lenis.scrollTo(0, options)
+  } else {
+    window.scrollTo(0, 0)
+  }
+}
+
+export default { initLenis, getLenis, scrollToTop, subscribeToScroll }
+      
