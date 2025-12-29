@@ -154,13 +154,17 @@ export default function AllListings({ onBack }) {
                             console.warn('Listing missing image, using placeholder:', idValue);
                         }
                         return (
-                            <article key={idValue} className="bg-white group overflow-hidden">
+                            <article key={idValue} className="bg-white group overflow-hidden" style={{ transform: 'translateZ(0)' }}>
                                 <Link to={idValue ? `/listing/${idValue}` : '#'} className="block">
-                                    <div className="relative overflow-hidden h-80">
+                                    <div className="relative overflow-hidden h-80" style={{ transform: 'translateZ(0)' }}>
                                         <img
                                             src={listing.image || (listing.images && listing.images[0]) || 'https://via.placeholder.com/1600x900?text=Property+Image'}
                                             alt={listing.title}
+                                            loading="lazy"
+                                            decoding="async"
+                                            draggable={false}
                                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                            style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
                                         />
                                         <span className={`absolute top-4 right-4 ${statusBadge.color} text-white text-xs font-medium px-4 py-2 tracking-[0.2em]`}>
                                             {statusBadge.text}
