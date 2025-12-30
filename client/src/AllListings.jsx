@@ -5,8 +5,9 @@ import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import { getDummyListings } from './data/dummyListings';
 import { useEffect, useRef } from 'react';
+import { resolveImage, ensureProtocol, placeholderDataUrl } from './lib/image';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API = import.meta.env.VITE_API_URL;
 export default function AllListings({ onBack }) {
     const [filterStatus, setFilterStatus] = useState('all');
     
@@ -158,13 +159,14 @@ export default function AllListings({ onBack }) {
                                 <Link to={idValue ? `/listing/${idValue}` : '#'} className="block">
                                     <div className="relative overflow-hidden h-80" style={{ transform: 'translateZ(0)' }}>
                                         <img
-                                            src={listing.image || (listing.images && listing.images[0]) || 'https://via.placeholder.com/1600x900?text=Property+Image'}
+                                            src={ensureProtocol(resolveImage(listing.image || (listing.images && listing.images[0]) || placeholderDataUrl()))}
                                             alt={listing.title}
                                             loading="lazy"
                                             decoding="async"
                                             draggable={false}
                                             className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                                             style={{ willChange: 'transform, opacity', transform: 'translateZ(0)' }}
+                                            onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderDataUrl(); }}
                                         />
                                         <span className={`absolute top-4 right-4 ${statusBadge.color} text-white text-xs font-medium px-4 py-2 tracking-[0.2em]`}>
                                             {statusBadge.text}

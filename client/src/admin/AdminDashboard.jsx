@@ -6,7 +6,8 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API = import.meta.env.VITE_API_URL;
+import { resolveImage, ensureProtocol, placeholderDataUrl } from '../lib/image';
 
 // Sidebar Component
 const Sidebar = ({ stats, admin }) => {
@@ -17,6 +18,7 @@ const Sidebar = ({ stats, admin }) => {
   const menuItems = [
     { path: '/admin', icon: 'dashboard', label: 'Dashboard' },
     { path: '/admin/new', icon: 'add', label: 'Add Property' },
+    { path: '/admin/admins', icon: 'list', label: 'Admins' },
   ];
 
   const handleLogout = () => {
@@ -569,16 +571,13 @@ export default function AdminDashboard() {
             <div className="p-6">
               {/* determine filtered list by path and admin ownership if available */}
               {(() => {
-                const ownedOnly = !!admin && !!admin.name;
                 let filtered = listings.slice();
                 if (path === '/admin/listings') {
-                  filtered = ownedOnly ? listings.filter(l => (l.agent || '').toLowerCase() === (admin.name || '').toLowerCase()) : listings;
+                  filtered = listings;
                 } else if (path === '/admin/active') {
                   filtered = listings.filter(l => l.status === 'active');
-                  if (ownedOnly) filtered = filtered.filter(l => (l.agent || '').toLowerCase() === (admin.name || '').toLowerCase());
                 } else if (path === '/admin/sold') {
                   filtered = listings.filter(l => l.status === 'sold');
-                  if (ownedOnly) filtered = filtered.filter(l => (l.agent || '').toLowerCase() === (admin.name || '').toLowerCase());
                 } else {
                   // default: show all listings
                   filtered = listings;
@@ -608,7 +607,7 @@ export default function AdminDashboard() {
                     {filtered.map((listing) => (
                       <div key={listing._id || listing.id} className="bg-white rounded-2xl shadow p-4 border">
                         <div className="h-44 mb-4 rounded-lg overflow-hidden bg-gray-100">
-                          <img src={(listing.images && listing.images[0]) || listing.image} alt={listing.title} className="w-full h-full object-cover" />
+                          <img src={ensureProtocol(resolveImage((listing.images && listing.images[0]) || listing.image || placeholderDataUrl()))} alt={listing.title} className="w-full h-full object-cover" onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderDataUrl(); }} />
                         </div>
                         <div className="flex items-start justify-between">
                           <div>

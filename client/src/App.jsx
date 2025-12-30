@@ -238,7 +238,7 @@ export default function App() {
     setFormData({ ...formData, [name]: type === "checkbox" ? checked : value });
   };
 
-  const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
+  const API = import.meta.env.VITE_API_URL;
   const [featuredListing, setFeaturedListing] = useState(null);
   const FORMSPREE_LETS = 'https://formspree.io/f/xykylogp';
 

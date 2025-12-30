@@ -6,8 +6,9 @@ import ContactModal from './components/ContactModal';
 import { Instagram, Facebook } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { getDummyListing } from './data/dummyListings';
+import { resolveImage, ensureProtocol, placeholderDataUrl } from './lib/image';
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+const API = import.meta.env.VITE_API_URL;
 
 export default function ListingDetail() {
   const { id } = useParams();
@@ -80,12 +81,13 @@ export default function ListingDetail() {
 
       {/* Hero image */}
       <section className="relative h-[80vh]">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url('${listing.image || (listing.images && listing.images[0]) || 'https://via.placeholder.com/1600x900?text=Property+Image'}')` }}
-        >
-          <div className="absolute inset-0 bg-black bg-opacity-30" />
-        </div>
+        <img
+          src={ensureProtocol(resolveImage(listing.image || (listing.images && listing.images[0]) || placeholderDataUrl()))}
+          alt={listing.title}
+          className="absolute inset-0 w-full h-full object-cover"
+          onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderDataUrl(); }}
+        />
+        <div className="absolute inset-0 bg-black bg-opacity-30" />
         <div className="relative z-10 h-full flex items-end pb-12 px-6">
           <div className="max-w-6xl mx-auto text-white">
             <p className="text-sm tracking-[0.3em] mb-2 uppercase font-light">Featured Listing</p>
@@ -100,10 +102,11 @@ export default function ListingDetail() {
         <div className="grid md:grid-cols-2 gap-12">
             <div>
               <img
-                src={(listing.images && listing.images[0]) || listing.image}
+                src={ensureProtocol(resolveImage((listing.images && listing.images[0]) || listing.image || placeholderDataUrl()))}
                 alt={listing.title}
                 className="w-full h-[500px] object-cover rounded-sm cursor-pointer"
                 onClick={() => openPreview(0)}
+                onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderDataUrl(); }}
               />
 
               {/* gallery - show all provided images (up to 12) */}
@@ -111,10 +114,11 @@ export default function ListingDetail() {
                 {((listing.images && listing.images.length) ? listing.images : (listing.image ? [listing.image] : [])).slice(0,12).map((src, i) => (
                   <img
                     key={i}
-                    src={src}
+                    src={ensureProtocol(resolveImage(src || placeholderDataUrl(400,225)))}
                     alt={`gallery-${i}`}
                     className="w-full h-24 object-cover rounded cursor-pointer"
                     onClick={() => openPreview(i)}
+                    onError={(e) => { e.currentTarget.onerror = null; e.currentTarget.src = placeholderDataUrl(400,225); }}
                   />
                 ))}
               </div>

@@ -2,6 +2,13 @@ const express = require('express');
 const router = express.Router();
 const listingsController = require('../controllers/listingsController');
 const { upload } = require('../middlewares/upload');
+const { body, validationResult } = require('express-validator');
+
+function validateListing(req, res, next) {
+	const errors = validationResult(req);
+	if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+	next();
+}
 
 // Map multer's `req.files` (array from `upload.any()`) into an object
 // where keys are fieldnames and values are arrays - matching what
@@ -19,8 +26,32 @@ function mapFilesMiddleware(req, res, next) {
 
 router.get('/', listingsController.list);
 router.get('/:id', listingsController.get);
-router.post('/', upload.any(), mapFilesMiddleware, listingsController.create);
-router.put('/:id', upload.any(), mapFilesMiddleware, listingsController.update);
+router.post(
+	'/',
+	upload.any(),
+	mapFilesMiddleware,
+	// validations
+	body('title').optional().isString().isLength({ min: 1 }),
+	body('price').optional().isNumeric(),
+	body('beds').optional().isInt({ min: 0 }),
+	body('baths').optional().isInt({ min: 0 }),
+	body('status').optional().isIn(['active', 'under-contract', 'sold']),
+	validateListing,
+	listingsController.create
+);
+
+router.put(
+	'/:id',
+	upload.any(),
+	mapFilesMiddleware,
+	body('title').optional().isString().isLength({ min: 1 }),
+	body('price').optional().isNumeric(),
+	body('beds').optional().isInt({ min: 0 }),
+	body('baths').optional().isInt({ min: 0 }),
+	body('status').optional().isIn(['active', 'under-contract', 'sold']),
+	validateListing,
+	listingsController.update
+);
 router.delete('/:id', listingsController.remove);
 
 module.exports = router;

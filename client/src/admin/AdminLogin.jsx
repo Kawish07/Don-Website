@@ -30,6 +30,8 @@ export default function AdminLogin() {
           <input value={password} onChange={e=>setPassword(e.target.value)} placeholder="Password" type="password" required className="w-full px-3 py-2 border rounded" />
           <button className="w-full bg-black text-white py-2 rounded">Login</button>
         </form>
+
+        {/* Signup removed - admins can be created from the Admins manager */}
       </div>
     </div>
   );

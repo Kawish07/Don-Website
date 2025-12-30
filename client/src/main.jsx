@@ -9,7 +9,8 @@ import Testimonials from './Testimonials'
 import AdminDashboard from './admin/AdminDashboard'
 import EditProperty from './admin/EditProperty'
 import AdminLogin from './admin/AdminLogin'
-import AdminSignup from './admin/AdminSignup'
+import AdminsManager from './admin/AdminsManager'
+import NotFound from './NotFound'
 import { AuthProvider } from './admin/AuthProvider'
 import PrivateRoute from './admin/PrivateRoute'
 import './index.css'
@@ -143,13 +144,14 @@ const router = createBrowserRouter([
       { path: '/staging', element: <PageWrapper><Staging /></PageWrapper> },
       { path: '/testimonials', element: <PageWrapper><Testimonials /></PageWrapper> },
       { path: '/admin/login', element: <AdminLogin /> },
-      { path: '/admin/signup', element: <AdminSignup /> },
+      { path: '/admin/admins', element: <PrivateRoute><PageWrapper><AdminsManager /></PageWrapper></PrivateRoute> },
       { path: '/admin', element: <PrivateRoute><PageWrapper><AdminDashboard /></PageWrapper></PrivateRoute> },
       { path: '/admin/new', element: <PrivateRoute><PageWrapper><EditProperty /></PageWrapper></PrivateRoute> },
       { path: '/admin/edit/:id', element: <PrivateRoute><PageWrapper><EditProperty /></PageWrapper></PrivateRoute> },
       { path: '/admin/listings', element: <PrivateRoute><PageWrapper><AdminDashboard /></PageWrapper></PrivateRoute> },
       { path: '/admin/active', element: <PrivateRoute><PageWrapper><AdminDashboard /></PageWrapper></PrivateRoute> },
       { path: '/admin/sold', element: <PrivateRoute><PageWrapper><AdminDashboard /></PageWrapper></PrivateRoute> },
+      { path: '*', element: <PageWrapper><NotFound /></PageWrapper> }
     ]
   }
 ])

@@ -199,6 +199,7 @@ export default function Header({ onBack, light = false }) {
                                 <span className="font-semibold">Menu</span>
                             </button>
                         </div>
+                        
                     </div>
                 </div>
             </header>
@@ -274,24 +275,16 @@ export default function Header({ onBack, light = false }) {
                                 </div>
                             </button>
                         ))}
-                    </nav>
-
-                    {/* Social Section */}
-                    <div className="mt-auto pt-8 border-t border-white/10">
-                        <div className={`transform transition-all duration-500 ${menuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`} style={{ transitionDelay: '500ms' }}>
-                            <p className="text-xs font-mono text-white/40 mb-4 tracking-wider uppercase">Connect</p>
-                            <div className="flex items-center space-x-3">
-                                <a href="https://www.instagram.com/theagency.ottawa/?hl=en" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 border border-white/20 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 hover:border-white/40 hover:scale-110">
-                                    <div className="absolute inset-0 bg-white transform scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
-                                    <Instagram className="w-5 h-5 text-white relative z-10 group-hover:text-black transition-colors duration-300" />
-                                </a>
-                                <a href="https://www.facebook.com/parnanzonerealty/" target="_blank" rel="noopener noreferrer" className="group relative w-12 h-12 border border-white/20 rounded-full flex items-center justify-center overflow-hidden transition-all duration-300 hover:border-white/40 hover:scale-110">
-                                    <div className="absolute inset-0 bg-white transform scale-0 group-hover:scale-100 transition-transform duration-300 rounded-full" />
-                                    <Facebook className="w-5 h-5 text-white relative z-10 group-hover:text-black transition-colors duration-300" />
-                                </a>
-                            </div>
-                        </div>
+                        {/* Admin Login Button */}
+                    <div className="mt-6 mb-6">
+                        <button
+                            onClick={() => { setMenuOpen(false); navigate('/admin/login'); }}
+                            className="w-full inline-flex items-center justify-center px-4 py-3 bg-white text-black rounded-lg font-semibold hover:opacity-90 transition-opacity"
+                        >
+                            Admin Login
+                        </button>
                     </div>
+                    </nav>
                 </div>
             </div>
 
