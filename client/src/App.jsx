@@ -596,7 +596,7 @@ export default function App() {
             <video
               ref={videoRef}
               className="absolute top-0 left-0 w-full h-full object-cover"
-              poster="https://images.pexels.com/photos/313691/pexels-photo-313691.jpeg"
+              poster="/images/Don6.png"
               onClick={handleVideoPlay}
             >
               <source
