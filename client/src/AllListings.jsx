@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { Instagram, Facebook, MapPin, Bed, Bath, Maximize } from 'lucide-react';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
-import { getDummyListings } from './data/dummyListings';
 import { useEffect, useRef } from 'react';
 import { resolveImage, ensureProtocol, placeholderDataUrl, API } from './lib/image';
 export default function AllListings({ onBack }) {
@@ -12,8 +11,6 @@ export default function AllListings({ onBack }) {
 
     const [listings, setListings] = useState([]);
     const mountedRef = useRef(true);
-
-    // dummy listings are provided by shared module (stable ids)
 
     useEffect(() => {
         mountedRef.current = true;
@@ -28,8 +25,7 @@ export default function AllListings({ onBack }) {
             })
                 .catch((err) => {
                     console.error('Failed to load listings:', err);
-                    // fallback to dummy sample listings when backend is down
-                    setListings(getDummyListings());
+                    setListings([]);
                 });
         return () => { mountedRef.current = false; };
     }, []);
@@ -60,7 +56,7 @@ export default function AllListings({ onBack }) {
                 <div 
                     className="absolute inset-0 bg-cover bg-center"
                     style={{ 
-                        backgroundImage: "url('https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg')"
+                        backgroundImage: "url('https://images.pexels.com/photos/3288100/pexels-photo-3288100.png')"
                     }}
                 >
                     <div className="absolute inset-0 bg-black bg-opacity-50"></div>
@@ -207,7 +203,7 @@ export default function AllListings({ onBack }) {
             <section className="relative h-screen">
                 <div className="absolute inset-0">
                     <img
-                        src={'/images/workwithme.png'}
+                        src={'https://images.pexels.com/photos/313691/pexels-photo-313691.jpeg'}
                         alt="Philip profile"
                         className="w-full h-full object-cover"
                         style={{ objectPosition: 'center 25%' }}

@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
 import { Instagram, Facebook } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { getDummyListing } from './data/dummyListings';
 import { resolveImage, ensureProtocol, placeholderDataUrl, API } from './lib/image';
 
 export default function ListingDetail() {
@@ -50,12 +49,7 @@ export default function ListingDetail() {
       })
       .catch((err) => {
         console.error('Failed to load listing:', err);
-        const dummy = getDummyListing(id);
-        if (dummy) {
-          setListing(dummy);
-        } else {
-          setListing(null);
-        }
+        setListing(null);
         setLoading(false);
       });
   }, [id]);

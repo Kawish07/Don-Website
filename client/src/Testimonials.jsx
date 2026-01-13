@@ -7,27 +7,9 @@ export default function Testimonials() {
   const testimonials = [
     {
       id: 1,
-      title: "Made buying our first home feel stress-free.",
+      title: "Prompt and Professional Service",
       preview:
-        "As first-time buyers, we had a lot of questions, and Philip walked us through every step with so much patience and clarity. He understood exactly what we were looking for and found us a home that checked every box. The entire process felt smooth and stress-free thanks to his expertise and honesty.",
-    },
-    {
-      id: 2,
-      title: "His market knowledge is unmatched.",
-      preview:
-        "We were moving to Ottawa from out of town and didn't know much about the local neighborhoods. Philip gave us detailed insights, explained every option, and made sure we felt confident before making any decisions. His knowledge of the market is outstanding, and we couldn't be happier with our new home.",
-    },
-    {
-      id: 3,
-      title: "Helped us sell and buy, both experiences were excellent.",
-      preview:
-        "Philip helped us sell our old home and purchase our new one, and he managed both transactions flawlessly. His negotiation skills saved us money on the purchase and helped us maximize value on the sale. Professional, organized, and always available, we couldn't have asked for a better realtor.",
-    },
-    {
-      id: 4,
-      title: "Trustworthy, honest, and incredibly reliable.",
-      preview:
-        "Whether you're buying or selling, Philip is the person you want in your corner. He offers honest advice, communicates clearly, and always puts his clients first. We felt supported at every stage and would happily work with him again.",
+        "Conception Pena was very prompt in returning my calls and scheduling a viewing. He also answered all my questions to my satisfaction.",
     },
   ];
 
@@ -41,7 +23,7 @@ export default function Testimonials() {
           className="h-[90vh] md:h-[100vh] bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://images.unsplash.com/photo-1762941177632-fe37c485c428?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fHJlYWwlMjBlc3RhdGUlMjB0ZXN0aW1vbmlhbHN8ZW58MHx8MHx8fDA%3D)",
+              "url('https://images.pexels.com/photos/8815917/pexels-photo-8815917.jpeg')",
           }}
         />
         <div className="flex items-center justify-center p-12">
@@ -53,9 +35,8 @@ export default function Testimonials() {
               Testimonials
             </h1>
             <p className="text-base text-gray-700 leading-relaxed mb-8">
-              Conception Pena was very prompt in returning my calls and
-              scheduling a viewing. He also answered all my questions to my
-              satisfaction.
+              Read what our clients have to say about working with Concepcion
+              Pena.
             </p>
             <button
               onClick={() =>
@@ -133,7 +114,7 @@ export default function Testimonials() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url('https://media-production.lp-cdn.com/media/ba55b97b-8625-4b2e-a8b0-057a703b8dbc')",
+              "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cmVhbCUyMGVzdGF0ZXxlbnwwfHwwfHx8MA%3D%3D')",
           }}
         />
         {/* dark overlay to improve white text contrast */}
