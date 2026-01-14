@@ -1,5 +1,5 @@
 import React from "react";
-import { Instagram, Facebook } from "lucide-react";
+import { Facebook, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -26,7 +26,7 @@ export default function Footer() {
                   LICENSED IN
                 </p>
                 <p className="text-sm tracking-widest font-light">
-                  United States
+                  Virginia, United state
                 </p>
               </div>
             </div>
@@ -149,13 +149,13 @@ export default function Footer() {
               <p className="text-sm font-light">Copyright © 2025 | </p>
               <div className="flex space-x-3">
                 <a
-                  href="https://www.instagram.com/theagency.ottawa/?hl=en"
+                  href="https://www.linkedin.com/in/don-ashworth-4b2364135/"
                   className="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
                 >
-                  <Instagram className="w-4 h-4" />
+                  <Linkedin className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://www.facebook.com/parnanzonerealty/"
+                  href="https://www.facebook.com/downtoearthdon/"
                   className="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
                 >
                   <Facebook className="w-4 h-4" />

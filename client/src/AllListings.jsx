@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Facebook, MapPin, Bed, Bath, Maximize } from 'lucide-react';
+import { Facebook, Linkedin, MapPin, Bed, Bath, Maximize } from 'lucide-react';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import { useEffect, useRef } from 'react';

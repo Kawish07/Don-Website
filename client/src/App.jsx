@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation } from "react-router-dom";
-import { X, Instagram, Facebook } from "lucide-react";
+import { X, Facebook, Linkedin } from "lucide-react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import { getLenis } from "./lib/lenis";
@@ -333,13 +333,13 @@ export default function App() {
             />
             <div className="absolute bottom-8 left-8 flex space-x-3">
               <a
-                href="https://www.instagram.com/theagency.ottawa/?hl=en"
+                href="https://www.linkedin.com/in/don-ashworth-4b2364135/"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors shadow-md"
               >
-                <Instagram className="w-5 h-5 text-black" />
+                <Linkedin className="w-5 h-5 text-black" />
               </a>
               <a
-                href="https://www.facebook.com/parnanzonerealty/"
+                href="https://www.facebook.com/downtoearthdon/"
                 className="w-12 h-12 bg-white rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors shadow-md"
               >
                 <Facebook className="w-5 h-5 text-black" />
@@ -579,70 +579,25 @@ export default function App() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="https://www.instagram.com/theagency.ottawa/?hl=en"
+                href="https://www.linkedin.com/in/don-ashworth-4b2364135/"
                 className="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
               >
-                <Instagram className="w-4 h-4" />
+                <Linkedin className="w-4 h-4" />
               </a>
               <a
-                href="https://www.facebook.com/parnanzonerealty/"
+                href="https://www.facebook.com/downtoearthdon/"
                 className="w-10 h-10 border border-white rounded-full flex items-center justify-center hover:bg-white hover:text-black transition-colors"
               >
                 <Facebook className="w-4 h-4" />
               </a>
             </div>
           </div>
-          <div className="relative" style={{ paddingBottom: "110%" }}>
-            <video
-              ref={videoRef}
-              className="absolute top-0 left-0 w-full h-full object-cover"
-              poster="/images/Don6.png"
-              onClick={handleVideoPlay}
-            >
-              <source
-                src="https://www.pexels.com/download/video/7578550/"
-                type="video/mp4"
-              />
-              Your browser does not support the video tag.
-            </video>
-
-            {!videoPlaying && (
-              <button
-                onClick={handleVideoPlay}
-                className="absolute inset-0 flex items-center justify-center group cursor-pointer bg-black bg-opacity-20 hover:bg-opacity-30 transition-all duration-300"
-              >
-                <div className="relative">
-                  {/* Ripple effect ring */}
-                  <div className="absolute inset-0 w-20 h-20 -left-2 -top-2 bg-white rounded-full opacity-30 animate-ripple"></div>
-
-                  {/* Play button */}
-                  <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center group-hover:scale-110 group-hover:shadow-2xl transition-all duration-300 shadow-lg relative z-10">
-                    <svg
-                      className="w-6 h-6 ml-1 text-black"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path d="M8 5v14l11-7z" />
-                    </svg>
-                  </div>
-                </div>
-              </button>
-            )}
-
-            {videoPlaying && (
-              <button
-                onClick={handleVideoPlay}
-                className="absolute top-4 right-4 w-12 h-12 bg-black bg-opacity-50 hover:bg-opacity-70 rounded-full flex items-center justify-center transition-all duration-300 z-10"
-              >
-                <svg
-                  className="w-5 h-5 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
-                </svg>
-              </button>
-            )}
+          <div className="relative w-full">
+            <img
+              src="/images/Don6.png"
+              alt="Don Ashworth"
+              className="w-full h-auto object-cover rounded"
+            />
           </div>
         </div>
       </section>

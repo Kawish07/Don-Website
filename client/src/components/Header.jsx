@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { Menu, X, Instagram, Facebook } from 'lucide-react';
+import { Menu, X, Facebook, Linkedin } from 'lucide-react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { getLenis } from '../lib/lenis';
 import ContactModal from './ContactModal';
@@ -21,7 +21,8 @@ export default function Header({ onBack, light = false }) {
     const isAllListings = location && location.pathname === '/all-listings';
     // when header sits on a dark/black background (all listings) or when the split black bg is visible after scrolling, invert the logo to white
     const useWhite = isAllListings;
-    const logoOnDarkBg = useWhite;
+    // only invert the logo (not the link colors) when the background behind it is dark
+    const logoOnDarkBg = useWhite || !atTop;
     const rightLinkClass = useWhite ? 'text-white font-semibold text-base md:text-lg hover:opacity-80 transition-opacity' : 'text-black font-semibold text-base md:text-lg hover:opacity-70 transition-opacity';
     // icon: white on small screens only, black on sm+ (medium and large)
     const rightIconClass = useWhite ? 'w-5 h-5 text-white' : 'w-5 h-5 text-white sm:text-black';

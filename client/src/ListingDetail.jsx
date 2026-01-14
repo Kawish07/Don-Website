@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
-import { Instagram, Facebook } from 'lucide-react';
+import { Facebook, Linkedin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { resolveImage, ensureProtocol, placeholderDataUrl, API } from './lib/image';
 
@@ -147,10 +147,10 @@ export default function ListingDetail() {
             {/* Share section */}
             <div className="flex items-center gap-4 mb-8">
               <span className="font-medium">Share:</span>
-              <a href="https://www.instagram.com/theagency.ottawa/?hl=en" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
-                <Instagram className="w-4 h-4" />
+              <a href="https://www.linkedin.com/in/don-ashworth-4b2364135/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://www.facebook.com/parnanzonerealty/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+              <a href="https://www.facebook.com/downtoearthdon/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
                 <Facebook className="w-4 h-4" />
               </a>
             </div>
