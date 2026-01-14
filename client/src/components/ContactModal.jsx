@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Instagram } from 'lucide-react';
+import { X, Facebook, Linkedin } from 'lucide-react';
 import { API } from '../lib/image';
 
 export default function ContactModal({ open = false, onClose = () => { } }) {
@@ -147,8 +147,11 @@ export default function ContactModal({ open = false, onClose = () => { } }) {
                                     </div>
 
                                     <div className="mt-8 flex gap-4">
-                                        <a href='https://www.instagram.com/theagency.ottawa/?hl=en' className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition">
-                                            <Instagram className="w-4 h-4 text-white" />
+                                        <a href='https://www.linkedin.com/in/don-ashworth-4b2364135/' className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition">
+                                            <Linkedin className="w-4 h-4 text-white" />
+                                        </a>
+                                        <a href='https://www.facebook.com/downtoearthdon/' className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center hover:bg-white/10 transition">
+                                            <Facebook className="w-4 h-4 text-white" />
                                         </a>
                                     </div>
                                 </div>
